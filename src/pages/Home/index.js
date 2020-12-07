@@ -9,6 +9,7 @@ import ModalComponent from "../../shared/ModalComponent"
 import { getProducts, getProduct, setIsLoading } from "../../shared/slices/cartSlice";
 import Header from '../../shared/Header';
 import Loading from '../../shared/Loading'
+import { addAds } from '../../utils/stringHelper';
 
 
 export default function Home(props) {
@@ -19,15 +20,9 @@ export default function Home(props) {
     const isLoading = useSelector(state => state.cart.isLoading);
     const isFiltering = useSelector(state => state.cart.isFiltering);
 
-    console.log("isLoading", isLoading)
-
     const [data, setData] = useState([])
-
     const [showModal, setShowModal] = useState(false)
-
     const [itemID, setItemID] = useState('')
-
-    console.log("Item ID: ", product)
 
     useEffect(() => {
         if(itemID){
@@ -61,17 +56,22 @@ export default function Home(props) {
     useEffect(() => {
         fetchData.current()
     }, [])
-
+    
     useEffect(() => {
+
         if(products){
             let list = products.slice().sort((a, b) => {
                 let a1 = moment(new Date(a.date_added))
                 let b1 = moment(new Date(b.date_added))
                 return b1 - a1
             })
-            setData(list)
+
+            let arr = addAds(list)
+            setData(arr) 
         }
+   
     }, [products])
+
 
     return ( 
         <div className="homepage">

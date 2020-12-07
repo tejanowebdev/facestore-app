@@ -3,12 +3,13 @@ import { Button, Row, Col, DropdownButton, Dropdown} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { setIsFiltering } from '../../shared/slices/cartSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { addAds } from '../../utils/stringHelper';
 
 function SortComponent(props) {
-    const {setData, data} = props
+    const {setData} = props
 
     const dispatch = useDispatch()
-    const isFiltering = useSelector(state => state.cart.isFiltering);
+    const products = useSelector(state => state.cart.products);
 
     const handleSort = (title, desc) => {
 
@@ -16,20 +17,20 @@ function SortComponent(props) {
         
         switch (title) {
             case "id":
-                sortedItems = desc ? data.slice().sort((a, b) => b.id - a.id)
-                                : data.slice().sort((a, b) => a.id - b.id)
+                sortedItems = desc ? products.slice().sort((a, b) => b.id - a.id)
+                                : products.slice().sort((a, b) => a.id - b.id)
                 break;
             case "price":
-                sortedItems = desc ? data.slice().sort((a, b) => b.price - a.price)
-                                : data.slice().sort((a, b) => a.price - b.price)
+                sortedItems = desc ? products.slice().sort((a, b) => b.price - a.price)
+                                : products.slice().sort((a, b) => a.price - b.price)
 
                 break;
             case "size":
-                sortedItems = desc ? data.slice().sort((a, b) => b.size - a.size)
-                                : data.slice().sort((a, b) => a.size - b.size)
+                sortedItems = desc ? products.slice().sort((a, b) => b.size - a.size)
+                                : products.slice().sort((a, b) => a.size - b.size)
                 break;
             default:
-                sortedItems = data
+                sortedItems = products
                 break;
         }
 
@@ -37,7 +38,8 @@ function SortComponent(props) {
         
         setTimeout(() => {
             dispatch(setIsFiltering(false))
-            setData(sortedItems)
+            let newFilteredItem = addAds(sortedItems)
+            setData(newFilteredItem)
           }, 1000);
     }
 

@@ -54,34 +54,43 @@ function ProductList(props) {
         }
 
         return (
-                <Col key={item.id} className="col-sm-6 col-12 product px-2" >
+                <Col key={item.id} className={`col-12 product px-2 ${item.name == "ads" ? "ads col-sm-12" : "col-sm-6"}`} >
                 
                     <Card className="my-2 border-0">
                     
                         <Card.Body className="p-0">
                         <Row className="m-0">
-                            <Col className="col-md-8 col-12 d-flex align-items-center ascii-text justify-content-center flex-column">
-                                <Card.Title style={{fontSize:`${item.size}px`}} className="w-100 text-center pb-3">{item.ascii}</Card.Title>
-                                <Card.Text className="mb-0 p-1">Added: {days}</Card.Text>
+                            <Col className={`col-12 d-flex align-items-center ascii-text justify-content-center flex-column ${item.name == "ads" ? "col-md-12 text-uppercase" : "col-md-8"}`}>
+                                <Card.Title style={{fontSize:`${item.size}px`}} className="w-100 text-center pb-3">
+                                    {  item.name !== "ads" ? item.ascii : `${item.description}`}
+                                </Card.Title>
+                                {
+                                    item.name !== "ads" ? 
+                                                        <Card.Text className="mb-0 p-1">Added: {days}</Card.Text>
+                                                        :null
+                                }
                             </Col>
-                            <Col className="col-md-4 col-12 p-0">
-                                <div className="text-holder p-2 text-center">
-                                    <Row className="m-0 p-0">
-                                        <Col className="m-0 p-0 text-left"><Card.Text className="mb-0">Id: {item.id}</Card.Text></Col>
-                                        <Col className="m-0 p-0 text-right"><Card.Text className="mb-0">Size: {item.size}</Card.Text></Col> 
-                                    </Row>
-                                    <Row className="m-0 p-0">
-                                        <Col className="m-0 p-0 text-md-center text-left col-md-12 col-6 ">
-                                            <h2 className="mb-0">{`$${item.price}`}</h2>
-                                        </Col>
-                                        <Col className="mt-2 m-0 p-0 text-md-center text-right col-md-12 col-6">
-                                            <Button variant="primary" onClick={()=>handlePreview(item.id)}>Preview</Button>
-                                        </Col> 
-                                    </Row>
-                                    
-                                    
-                                </div>
-                            </Col>
+                            { 
+                                item.name !== "ads" ? 
+                                                    <Col className="col-md-4 col-12 p-0">
+                                                        <div className="text-holder p-2 text-center">
+                                                            <Row className="m-0 p-0">
+                                                                <Col className="m-0 p-0 text-left"><Card.Text className="mb-0">Id: {item.id}</Card.Text></Col>
+                                                                <Col className="m-0 p-0 text-right"><Card.Text className="mb-0">Size: {item.size}</Card.Text></Col> 
+                                                            </Row>
+                                                            <Row className="m-0 p-0">
+                                                                <Col className="m-0 p-0 text-md-center text-left col-md-12 col-6 ">
+                                                                    <h2 className="mb-0">{`$${item.price}`}</h2>
+                                                                </Col>
+                                                                <Col className="mt-2 m-0 p-0 text-md-center text-right col-md-12 col-6">
+                                                                    <Button variant="primary" onClick={()=>handlePreview(item.id)}>Preview</Button>
+                                                                </Col> 
+                                                            </Row>
+                                                        </div>
+                                                    </Col>
+                                                    :null
+                            }
+                            
                         </Row>
                         </Card.Body>
                     </Card>

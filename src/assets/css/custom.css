@@ -98,6 +98,12 @@
     overflow: hidden;
 }
 
+.products-list .ads{
+    width: 100% !important;
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+}
+
 /* CARD */
 .card-body {
     overflow: hidden;
