@@ -1,0 +1,214 @@
+/* * {
+    transition: all 0.5s ease;
+} */
+
+/* Loading */
+
+.loading-img {
+    height: 100% !important;
+    top: 0!important;
+    position: absolute;
+    width: 100% !important;
+    left: 0 !important;
+    background: rgba(255,255,255,0.2);
+    z-index: 1;
+}
+
+.listloader-icon .spinner-border {
+    top: -2px !important;
+    vertical-align: middle;
+    position: relative;
+}
+
+.listloader-icon .btn.disabled, .listloader-icon .btn:disabled {
+    opacity: 1;
+    font-size: 18px;
+}
+
+.App {
+    background: linear-gradient(90deg, #0752a6 30%, #6DCFF6 100%)
+}
+
+.homepage {
+    min-height: 100vh;
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+/* NAVBAR */
+.navbar {
+    /* position: fixed; */
+    background: #0752a6;
+    border-bottom: 1px solid #fff;
+}
+
+.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+    color: #FFC640;
+}
+
+.navbar img {
+    max-width: 350px;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #fff;
+    line-height: 16px;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    background-color: #FF951D;
+    color: #0752A6 !important;
+    font-weight: 500;
+}
+
+.navbar-toggler {
+    padding: 2px 10px;
+}
+
+/* SORT */
+.sort-label {
+    opacity: 1 !important;
+}
+
+.sort-section.col input, .sort-section.col .dropdown button {
+    line-height: 16px;
+    font-size: 14px;
+    padding: 3px 5px;
+}
+
+.dropdown-menu {
+    min-width: 100px;
+}
+
+.dropdown-menu a {
+    font-size: 14px;
+}
+
+.dropdown-menu a:active, .dropdown-menu a:hover{
+    background-color:rgba(0,0,0,0.1) !important;
+}
+
+
+/* PRODUCTS */
+.products-list {
+    overflow: hidden;
+}
+
+/* CARD */
+.card-body {
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.text-holder {
+    background: #0752A6;
+    color: #fff;
+    font-size: 12px;
+    margin-right: -1px;
+}
+
+.text-holder button{
+    line-height: 16px;
+}
+
+.text-holder h2{
+    color: #FFA528;
+}
+
+.card-title {
+    margin-bottom: 0;
+    white-space: nowrap;
+}
+
+.ascii-text {
+    min-height: 110px;
+}
+
+.ascii-text .card-text{
+    position: absolute;
+    left: 5px;
+    bottom: 0;
+    line-height: 12px;
+    font-size: 12px;
+    color: #000;
+    opacity: 0.5;
+}
+
+/* Modal */
+.modal-price {
+    font-size: 40px;
+    color: #FFA528 !important;
+}
+
+.asc-size button {
+    border-radius: 0;
+    padding: 2px 3px 4px;
+    font-size: 17px !important;
+    line-height: 10px;
+    min-width: 20px;
+    background: rgba(0,0,0,0.4);
+    border: 0;
+}
+
+/* Cover page */
+.cover-page .row {
+    height: 100vh;
+}
+
+.cover-page img {
+    max-width: 300px;
+}
+
+/* Infininte Scroll */
+
+.infinite-scroll-component__outerdiv {
+    width: 100% !important
+}
+
+
+
+
+@media (max-width: 992px) {
+    .navbar-collapse {
+        position: absolute;
+        top: 72px;
+        right: -200px;
+        padding: 15px;
+        width: 100%;
+        transition: all 0.4s ease;
+        display: block;
+        background: #0752A6;
+        max-width: 200px;
+        margin: 0 !important;
+        height: 100vh;
+    }
+    .navbar-collapse.collapsing {
+        right: -50%;
+        transition: all 0.2s ease;
+    }
+    .navbar-collapse.show {
+        right: 0;
+    }
+    .navbar-light .navbar-nav .nav-link {
+        padding: 10px;
+    }
+}
+
+
+
+/* @media only screen and (max-width: 991px){} */
+@media only screen and (max-width: 768px){
+    .navbar img {
+        max-width: 270px;
+    }
+
+    .navbar-collapse {
+        top: 60px;
+    }
+}
+
+
