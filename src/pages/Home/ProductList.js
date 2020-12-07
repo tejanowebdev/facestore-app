@@ -9,7 +9,7 @@ import LoadingComponent from '../../shared/LoadingComponent';
 function ProductList(props) {
     const {data, handlePreview, isLoading} = props
 
-    const [page, setPage] = useState(20);
+    const [page, setPage] = useState(21);
     const [newdata, setNewData] = useState([]);
     const [hasnext, setHasNext] = useState(true);
 
@@ -28,7 +28,7 @@ function ProductList(props) {
         
                 if(scrollable == scrolled){
                     setTimeout(() => {
-                        setPage(prev=>prev + 20)
+                        setPage(prev=>prev + 21)
                     }, 1000);
                 }
             })
