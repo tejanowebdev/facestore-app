@@ -10,7 +10,7 @@ import { getProducts, getProduct, setIsLoading } from "../../shared/slices/cartS
 import Header from '../../shared/Header';
 import Loading from '../../shared/Loading'
 import { addAds } from '../../utils/stringHelper';
-
+import HelperFunction from '../../utils/HelperFunction';
 
 export default function Home(props) {
 
@@ -19,6 +19,7 @@ export default function Home(props) {
     const product = useSelector(state => state.cart.product);
     const isLoading = useSelector(state => state.cart.isLoading);
     const isFiltering = useSelector(state => state.cart.isFiltering);
+    const {fetchData} = HelperFunction()
 
     const [data, setData] = useState([])
     const [showModal, setShowModal] = useState(false)
@@ -37,24 +38,9 @@ export default function Home(props) {
         setItemID(id)
     }
 
-    //Fetch Data
-    const fetchData = useRef(()=>{})
-    fetchData.current = () => {
-        dispatch(setIsLoading(true))
-
-        fetch('tempAPI.json')
-            .then(response => response.json())
-            .then(data => {
-                setTimeout(() => {
-                    dispatch(setIsLoading(false))
-                    dispatch(getProducts(data.body))
-                  }, 1000);
-            })
-            .catch(error => console.log(error))
-    }
-
     useEffect(() => {
-        fetchData.current()
+        fetchData()
+        // fetchData.current()
     }, [])
     
     useEffect(() => {

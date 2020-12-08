@@ -4,7 +4,7 @@ import Header from '../../shared/Header';
 import { Container, Row, Col} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function ContactUs() {
+function ContactUs() { 
 
     return (
         <div>

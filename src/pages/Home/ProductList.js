@@ -12,11 +12,14 @@ function ProductList(props) {
     const [page, setPage] = useState(21);
     const [newdata, setNewData] = useState([]);
     const [hasnext, setHasNext] = useState(true);
+    const [showLoading, setshowLoading] = useState(false);
+
 
     useEffect(() => {
         const items = data.slice(0, page) 
         setNewData(items)
     }, [page, data])
+
 
     const fetchMoreData = () => {
         if(data.length === newdata.length){
@@ -26,10 +29,12 @@ function ProductList(props) {
                 const scrollable = document.documentElement.scrollHeight - window.innerHeight;
                 const scrolled = window.scrollY
         
-                if(scrollable == scrolled){
+                if(scrollable === scrolled){
                     setTimeout(() => {
                         setPage(prev=>prev + 21)
                     }, 1000);
+                }else{
+                    setshowLoading(true)
                 }
             })
         }
@@ -45,7 +50,7 @@ function ProductList(props) {
 
         let days
         
-        if((daysDiff && daysDiff != 1) && weeksDiff < 2 ){
+        if((daysDiff && daysDiff !== 1) && weeksDiff < 2 ){
             days = `${daysDiff} days ago`
         }else if(weeksDiff > 1){
             days = formatDate(new Date(item.date_added))
@@ -54,15 +59,15 @@ function ProductList(props) {
         }
 
         return (
-                <Col key={item.id} className={`col-12 product px-2 ${item.name == "ads" ? "ads col-sm-12" : "col-sm-6"}`} >
+                <Col key={item.id} className={`col-12 product px-2 ${item.name === "ads" ? "ads col-sm-12" : "col-sm-6"}`} >
                 
                     <Card className="my-2 border-0">
                     
                         <Card.Body className="p-0">
                         <Row className="m-0">
-                            <Col className={`col-12 d-flex align-items-center ascii-text justify-content-center flex-column ${item.name == "ads" ? "col-md-12 text-uppercase" : "col-md-8"}`}>
+                            <Col className={`col-12 d-flex align-items-center ascii-text justify-content-center flex-column ${item.name === "ads" ? "col-md-12 text-uppercase" : "col-md-8"}`}>
                                 <Card.Title style={{fontSize:`${item.size}px`}} className="w-100 text-center pb-3">
-                                    {  item.name !== "ads" ? item.ascii : `${item.description}`}
+                                    {  item.name !== "ads" ? item.ascii : `${item.sponsor}`}
                                 </Card.Title>
                                 {
                                     item.name !== "ads" ? 
@@ -101,24 +106,19 @@ function ProductList(props) {
     const endMsg = <p className="endMessage w-100 text-center text-white"> ~ end of catalogue ~ </p>
 
 
-
     return (
 
             <Container className="products-list">
-           
-                {  
-                    <InfiniteScroll
-                        dataLength={page}
-                        next={fetchMoreData}
-                        hasMore={hasnext}
-                        loader={!isLoading && <LoadingComponent />}
-                        endMessage={endMsg}
-                        className="row px-2"
-                        >
-                        {list}
-                    </InfiniteScroll>
-                }
-                    
+                        <InfiniteScroll
+                            dataLength={page}
+                            next={fetchMoreData}
+                            hasMore={hasnext}
+                            loader={<LoadingComponent showLoading={showLoading}/>}
+                            endMessage={endMsg}
+                            className="row px-2"
+                            >
+                            {list}
+                        </InfiniteScroll>
             </Container>
     ) 
 }
