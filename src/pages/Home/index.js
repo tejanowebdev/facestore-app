@@ -58,6 +58,7 @@ export default function Home(props) {
    
     }, [products])
 
+// hello
 
     return ( 
         <div className="homepage">
