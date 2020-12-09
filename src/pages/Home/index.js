@@ -58,7 +58,7 @@ export default function Home(props) {
    
     }, [products])
 
-// hello po
+// this is a comment section
 
     return ( 
         <div className="homepage">
